@@ -344,7 +344,7 @@
 
     "solrConnectionString": {
       "type": "securestring",
-      "defaultValue": "https://ss826876-us-east-1-aws.searchstax.com/solr"
+      "defaultValue": "https://ss826876-us-east-1-aws.searchstax.com/solr/"
     },
     "xcSolrConnectionString": {
       "type": "securestring",
