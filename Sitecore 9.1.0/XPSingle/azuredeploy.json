@@ -378,7 +378,7 @@
 
     "useApplicationInsights": {
       "type": "bool",
-      "defaultValue": true
+      "defaultValue": false
     },
     "applicationInsightsName": {
       "type": "string",
