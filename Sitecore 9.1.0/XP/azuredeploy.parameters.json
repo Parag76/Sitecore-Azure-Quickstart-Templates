@@ -38,25 +38,7 @@
     "repMsDeployPackageUrl": {
       "value": ""
     },
-    "xcRefDataMsDeployPackageUrl": {
-      "value": ""
-    },
-    "xcCollectMsDeployPackageUrl": {
-      "value": ""
-    },
-    "xcSearchMsDeployPackageUrl": {
-      "value": ""
-    },
-    "cortexProcessingMsDeployPackageUrl": {
-      "value": ""
-    },
-    "cortexReportingMsDeployPackageUrl": {
-      "value": ""
-    },
-    "maOpsMsDeployPackageUrl": {
-      "value": ""
-    },
-    "maRepMsDeployPackageUrl": {
+    "xcSingleMsDeployPackageUrl": {
       "value": ""
     },
     "authCertificateBlob": {

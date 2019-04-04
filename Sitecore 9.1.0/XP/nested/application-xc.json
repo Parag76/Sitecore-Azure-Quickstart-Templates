@@ -1,25 +1,8 @@
-﻿{
+{
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "variables": {
     "resourcesApiVersion": "2016-09-01",
-    "webApiVersion": "2016-08-01",
-    "appInsightsApiVersion": "2015-05-01",
-
-    "sqlServerFqdnTidy": "[toLower(trim(parameters('sqlServerFqdn')))]",
-
-    "poolsSqlDatabaseNameTidy": "[toLower(trim(parameters('poolsSqlDatabaseName')))]",
-    "shardMapManagerSqlDatabaseNameTidy": "[toLower(trim(parameters('shardMapManagerSqlDatabaseName')))]",
-    "shard0SqlDatabaseNameTidy": "[toLower(trim(parameters('shard0SqlDatabaseName')))]",
-    "shard1SqlDatabaseNameTidy": "[toLower(trim(parameters('shard1SqlDatabaseName')))]",
-    "refDataSqlDatabaseNameTidy": "[toLower(trim(parameters('refDataSqlDatabaseName')))]",
-    "maSqlDatabaseNameTidy": "[toLower(trim(parameters('maSqlDatabaseName')))]",
-    "messagingSqlDatabaseNameTidy": "[toLower(trim(parameters('messagingSqlDatabaseName')))]",
-
-    "xcRefDataWebAppNameTidy": "[toLower(trim(parameters('xcRefDataWebAppName')))]",
-    "xcCollectWebAppNameTidy": "[toLower(trim(parameters('xcCollectWebAppName')))]",
-
-    "appInsightsNameTidy": "[toLower(trim(parameters('applicationInsightsName')))]",
 
     "searchProvider": "[if(empty(parameters('xcSolrConnectionString')), 'Azure', 'Solr')]"
   },
@@ -51,7 +34,6 @@
       "minLength": 1,
       "defaultValue": "[resourceGroup().location]"
     },
-
     "sitecoreAdminPassword": {
       "type": "securestring",
       "minLength": 8
@@ -61,11 +43,6 @@
       "minLength": 1
     },
 
-    "sqlServerFqdn": {
-      "type": "string",
-      "minLength": 1,
-      "defaultValue": "[parameters('infrastructure').sqlServerFqdn]"
-    },
     "sqlServerLogin": {
       "type": "string",
       "minLength": 1
@@ -100,6 +77,11 @@
       "minLength": 1,
       "defaultValue": "[concat(parameters('deploymentId'), '-refdata-db')]"
     },
+    "reportingSqlDatabaseName": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "[concat(parameters('deploymentId'), '-reporting-db')]"
+    },
     "maSqlDatabaseName": {
       "type": "string",
       "minLength": 1,
@@ -109,6 +91,16 @@
       "type": "string",
       "minLength": 1,
       "defaultValue": "[concat(parameters('deploymentId'), '-messaging-db')]"
+    },
+    "processingEngineTasksSqlDatabaseName": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "[concat(parameters('deploymentId'), '-processingenginetasks-db')]"
+    },
+    "processingEngineStorageSqlDatabaseName": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "[concat(parameters('deploymentId'), '-processingenginestorage-db')]"
     },
 
     "poolsSqlDatabaseUserName": {
@@ -161,6 +153,26 @@
       "minLength": 8,
       "defaultValue": "[concat(toUpper(uniqueString('messaging', parameters('passwordSalt'))), uniqueString('messaging', parameters('sqlServerPassword'), parameters('passwordSalt')), toUpper(uniqueString('messaging', parameters('sitecoreAdminPassword'), parameters('passwordSalt'))), '4@')]"
     },
+    "processingEngineSqlDatabaseUserName": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "processingengineuser"
+    },
+    "processingEngineSqlDatabasePassword": {
+      "type": "securestring",
+      "minLength": 8,
+      "defaultValue": "[concat(toUpper(uniqueString('processingengine', parameters('passwordSalt'))), uniqueString('processingengine', parameters('sqlServerPassword'), parameters('passwordSalt')), toUpper(uniqueString('processingengine', parameters('sitecoreAdminPassword'), parameters('passwordSalt'))), '4@')]"
+    },
+    "reportingSqlDatabaseUserName": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "reportinguser"
+    },
+    "reportingSqlDatabasePassword": {
+      "type": "securestring",
+      "minLength": 8,
+      "defaultValue": "[concat(toUpper(uniqueString('reporting', parameters('passwordSalt'))), uniqueString('reporting', parameters('sqlServerPassword'), parameters('passwordSalt')), toUpper(uniqueString('reporting', parameters('sitecoreAdminPassword'), parameters('passwordSalt'))), '4@')]"
+    },
 
     "searchServiceName": {
       "type": "string",
@@ -177,6 +189,11 @@
       "defaultValue": ""
     },
 
+    "machineLearningServerConnectionString": {
+      "type": "securestring",
+      "defaultValue": ""
+    },
+
     "useApplicationInsights": {
       "type": "bool",
       "defaultValue": true
@@ -187,40 +204,23 @@
       "defaultValue": "[concat(parameters('deploymentId'), '-ai')]"
     },
 
-    "xcRefDataWebAppName": {
+    "xcSingleWebAppName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-xc-refdata')]"
-    },
-    "xcCollectWebAppName": {
-      "type": "string",
-      "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-xc-collect')]"
-    },
-    "xcSearchWebAppName": {
-      "type": "string",
-      "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-xc-search')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-xc-single')]"
     },
 
-    "authCertificateThumbprint": {
-      "type": "string",
-      "minLength": 8,
-      "defaultValue": "[parameters('infrastructure').authCertificateThumbprint]"
+    "xcSingleMsDeployPackageUrl": {
+      "type": "securestring",
+      "minLength": 1
     },
 
-    "xcRefDataMsDeployPackageUrl": {
-      "type": "securestring",
-      "minLength": 1
+    "xcServerConfigurationEnvironment": {
+      "type": "string",
+      "defaultValue": "Production",
+      "allowedValues": [ "Development", "Production" ]
     },
-    "xcCollectMsDeployPackageUrl": {
-      "type": "securestring",
-      "minLength": 1
-    },
-    "xcSearchMsDeployPackageUrl": {
-      "type": "securestring",
-      "minLength": 1
-    },
+
     "allowInvalidClientCertificates": {
       "type": "bool",
       "defaultValue": false
@@ -232,108 +232,37 @@
       "defaultValue": "[resourceGroup().id]"
     },
 
-    "xcServerConfigurationEnvironment": {
+    "machineLearningServerBlobEndpointCertificatePath": {
       "type": "string",
-      "defaultValue": "Production",
-      "allowedValues": [ "Development", "Production" ]
+      "defaultValue": ""
+    },
+    "machineLearningServerBlobEndpointCertificatePassword": {
+      "type": "securestring",
+      "defaultValue": ""
+    },
+    "machineLearningServerTableEndpointCertificatePath": {
+      "type": "string",
+      "defaultValue": ""
+    },
+    "machineLearningServerTableEndpointCertificatePassword": {
+      "type": "securestring",
+      "defaultValue": ""
+    },
+    "machineLearningServerEndpointCertificationAuthorityCertificatePath": {
+      "type": "string",
+      "defaultValue": ""
     }
   },
   "resources": [
     {
-      "name": "[concat(variables('xcRefDataWebAppNameTidy'), '/', 'MSDeploy')]",
-      "type": "Microsoft.Web/sites/extensions",
-      "location": "[parameters('location')]",
-      "apiVersion": "[variables('webApiVersion')]",
-      "properties": {
-        "packageUri": "[parameters('xcRefDataMsDeployPackageUrl')]",
-        "dbType": "SQL",
-        "connectionString": "[concat('Data Source=tcp:', variables('sqlServerFqdnTidy'), ',1433;Initial Catalog=master;User Id=', parameters('sqlServerLogin'), ';Password=', parameters('sqlServerPassword'), ';')]",
-        "setParameters": {
-          "IIS Web Application Name": "[variables('xcRefDataWebAppNameTidy')]",
-          "Database Server Name": "[variables('sqlServerFqdnTidy')]",
-          "Database Admin User Name": "[parameters('sqlServerLogin')]",
-          "Database Admin User Password": "[parameters('sqlServerPassword')]",
-          "Reference Data Database Name": "[variables('refDataSqlDatabaseNameTidy')]",
-          "Reference Data Database Application User Name": "[parameters('xcRefDataSqlDatabaseUserName')]",
-          "Reference Data Database Application User Password": "[parameters('xcRefDataSqlDatabasePassword')]",
-          "XConnect Server Configuration Environment": "[parameters('xcServerConfigurationEnvironment')]",
-          "XConnect Server Certificate Validation Thumbprint": "[parameters('authCertificateThumbprint')]",
-          "Allow Invalid Client Certificates": "[parameters('allowInvalidClientCertificates')]",
-          "XConnect Server Application Insights Key": "[if(parameters('useApplicationInsights'), reference(resourceId('Microsoft.Insights/Components', variables('appInsightsNameTidy')), variables('appInsightsApiVersion')).InstrumentationKey, '')]",
-          "XConnect Server Instance Name": "ReferenceData",
-          "License Xml": "[parameters('licenseXml')]"
-        }
-      }
-    },
-    {
-      "name": "[concat(variables('xcCollectWebAppNameTidy'), '/', 'MSDeploy')]",
-      "type": "Microsoft.Web/sites/extensions",
-      "location": "[parameters('location')]",
-      "apiVersion": "[variables('webApiVersion')]",
-      "properties": {
-        "packageUri": "[parameters('xcCollectMsDeployPackageUrl')]",
-        "dbType": "SQL",
-        "connectionString": "[concat('Data Source=tcp:', variables('sqlServerFqdnTidy'), ',1433;Initial Catalog=master;User Id=', parameters('sqlServerLogin'), ';Password=', parameters('sqlServerPassword'), ';')]",
-        "setParameters": {
-          "IIS Web Application Name": "[variables('xcCollectWebAppNameTidy')]",
-          "Database Server Name": "[variables('sqlServerFqdnTidy')]",
-          "Database Admin User Name": "[parameters('sqlServerLogin')]",
-          "Database Admin User Password": "[parameters('sqlServerPassword')]",
-          "Collection Database Server Name": "[variables('sqlServerFqdnTidy')]",
-          "Collection Shard Map Manager Database Name": "[variables('shardMapManagerSqlDatabaseNameTidy')]",
-          "Collection Shard 0 Database Name": "[variables('shard0SqlDatabaseNameTidy')]",
-          "Collection Shard 1 Database Name": "[variables('shard1SqlDatabaseNameTidy')]",
-          "Processing Pools Database Name": "[variables('poolsSqlDatabaseNameTidy')]",
-          "Marketing Automation Database Name": "[variables('maSqlDatabaseNameTidy')]",
-          "Messaging Database Name": "[variables('messagingSqlDatabaseNameTidy')]",
-          "Collection Database Application User Name": "[parameters('xcShardMapManagerSqlDatabaseUserName')]",
-          "Collection Database Application User Password": "[parameters('xcShardMapManagerSqlDatabasePassword')]",
-          "Processing Pool Database Application User Name": "[parameters('poolsSqlDatabaseUserName')]",
-          "Processing Pool Database Application User Password": "[parameters('poolsSqlDatabasePassword')]",
-          "Marketing Automation Database Application User Name": "[parameters('xcMaSqlDatabaseUserName')]",
-          "Marketing Automation Database Application User Password": "[parameters('xcMaSqlDatabasePassword')]",
-          "Messaging Database Application User Name": "[parameters('messagingSqlDatabaseUserName')]",
-          "Messaging Database Application User Password": "[parameters('messagingSqlDatabasePassword')]",
-          "XConnect Server Configuration Environment": "[parameters('xcServerConfigurationEnvironment')]",
-          "XConnect Server Certificate Validation Thumbprint": "[parameters('authCertificateThumbprint')]",
-          "Allow Invalid Client Certificates": "[parameters('allowInvalidClientCertificates')]",
-          "XConnect Server Application Insights Key": "[if(parameters('useApplicationInsights'), reference(resourceId('Microsoft.Insights/Components', variables('appInsightsNameTidy')), variables('appInsightsApiVersion')).InstrumentationKey, '')]",
-          "XConnect Server Instance Name": "Collection",
-          "License Xml": "[parameters('licenseXml')]"
-        }
-      }
-    },
-    {
-      "name": "[concat(variables('xcRefDataWebAppNameTidy'), '/', 'appsettings')]",
-      "type": "Microsoft.Web/sites/config",
-      "apiVersion": "[variables('webApiVersion')]",
-      "properties": {
-        "WEBSITE_DYNAMIC_CACHE": 0
-      },
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites/extensions', variables('xcRefDataWebAppNameTidy'),'MSDeploy')]"
-      ]
-    },
-    {
-      "name": "[concat(variables('xcCollectWebAppNameTidy'), '/', 'appsettings')]",
-      "type": "Microsoft.Web/sites/config",
-      "apiVersion": "[variables('webApiVersion')]",
-      "properties": {
-        "WEBSITE_DYNAMIC_CACHE": 0
-      },
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites/extensions', variables('xcCollectWebAppNameTidy'),'MSDeploy')]"
-      ]
-    },
-    {
       "apiVersion": "[variables('resourcesApiVersion')]",
-      "name": "[concat(parameters('deploymentId'), '-application-xc-search-as')]",
+      "name": "[concat(parameters('deploymentId'), '-application-xc-as')]",
       "condition": "[equals(variables('searchProvider'), 'Azure')]",
       "type": "Microsoft.Resources/deployments",
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[concat(uri(parameters('templateLinkBase'), 'application-xc-search-as.json'), parameters('templateLinkAccessToken'))]"
+          "uri": "[concat(uri(parameters('templateLinkBase'), 'application-xc-as.json'), parameters('templateLinkAccessToken'))]"
         },
         "parameters": {
           "infrastructure": {
@@ -367,11 +296,29 @@
           "shardMapManagerSqlDatabaseName": {
             "value": "[parameters('shardMapManagerSqlDatabaseName')]"
           },
+          "shard0SqlDatabaseName": {
+            "value": "[parameters('shard0SqlDatabaseName')]"
+          },
+          "shard1SqlDatabaseName": {
+            "value": "[parameters('shard1SqlDatabaseName')]"
+          },
+          "refDataSqlDatabaseName": {
+            "value": "[parameters('refDataSqlDatabaseName')]"
+          },
+          "reportingSqlDatabaseName": {
+            "value": "[parameters('reportingSqlDatabaseName')]"
+          },
           "maSqlDatabaseName": {
             "value": "[parameters('maSqlDatabaseName')]"
           },
           "messagingSqlDatabaseName": {
             "value": "[parameters('messagingSqlDatabaseName')]"
+          },
+          "processingEngineTasksSqlDatabaseName": {
+            "value": "[parameters('processingEngineTasksSqlDatabaseName')]"
+          },
+          "processingEngineStorageSqlDatabaseName": {
+            "value": "[parameters('processingEngineStorageSqlDatabaseName')]"
           },
 
           "poolsSqlDatabaseUserName": {
@@ -379,6 +326,18 @@
           },
           "poolsSqlDatabasePassword": {
             "value": "[parameters('poolsSqlDatabasePassword')]"
+          },
+          "xcRefDataSqlDatabaseUserName": {
+            "value": "[parameters('xcRefDataSqlDatabaseUserName')]"
+          },
+          "xcRefDataSqlDatabasePassword": {
+            "value": "[parameters('xcRefDataSqlDatabasePassword')]"
+          },
+          "reportingSqlDatabaseUserName": {
+            "value": "[parameters('reportingSqlDatabaseUserName')]"
+          },
+          "reportingSqlDatabasePassword": {
+            "value": "[parameters('reportingSqlDatabasePassword')]"
           },
           "xcShardMapManagerSqlDatabaseUserName": {
             "value": "[parameters('xcShardMapManagerSqlDatabaseUserName')]"
@@ -398,12 +357,22 @@
           "messagingSqlDatabasePassword": {
             "value": "[parameters('messagingSqlDatabasePassword')]"
           },
+          "processingEngineSqlDatabaseUserName": {
+            "value": "[parameters('processingEngineSqlDatabaseUserName')]"
+          },
+          "processingEngineSqlDatabasePassword": {
+            "value": "[parameters('processingEngineSqlDatabasePassword')]"
+          },
 
           "searchServiceName": {
             "value": "[parameters('searchServiceName')]"
           },
           "xcSearchIndexName": {
             "value": "[parameters('xcSearchIndexName')]"
+          },
+
+          "machineLearningServerConnectionString": {
+            "value": "[parameters('machineLearningServerConnectionString')]"
           },
 
           "useApplicationInsights": {
@@ -413,12 +382,16 @@
             "value": "[parameters('applicationInsightsName')]"
           },
 
-          "xcSearchWebAppName": {
-            "value": "[parameters('xcSearchWebAppName')]"
+          "xcSingleWebAppName": {
+            "value": "[parameters('xcSingleWebAppName')]"
           },
 
-          "xcSearchMsDeployPackageUrl": {
-            "value": "[parameters('xcSearchMsDeployPackageUrl')]"
+          "xcSingleMsDeployPackageUrl": {
+            "value": "[parameters('xcSingleMsDeployPackageUrl')]"
+          },
+
+          "xcServerConfigurationEnvironment": {
+            "value": "[parameters('xcServerConfigurationEnvironment')]"
           },
 
           "allowInvalidClientCertificates": {
@@ -429,24 +402,33 @@
             "value": "[parameters('passwordSalt')]"
           },
 
-          "xcServerConfigurationEnvironment": {
-            "value": "[parameters('xcServerConfigurationEnvironment')]"
+          "machineLearningServerBlobEndpointCertificatePath": {
+            "value": "[parameters('machineLearningServerBlobEndpointCertificatePath')]"
+          },
+          "machineLearningServerBlobEndpointCertificatePassword": {
+            "value": "[parameters('machineLearningServerBlobEndpointCertificatePassword')]"
+          },
+          "machineLearningServerTableEndpointCertificatePath": {
+            "value": "[parameters('machineLearningServerTableEndpointCertificatePath')]"
+          },
+          "machineLearningServerTableEndpointCertificatePassword": {
+            "value": "[parameters('machineLearningServerTableEndpointCertificatePassword')]"
+          },
+          "machineLearningServerEndpointCertificationAuthorityCertificatePath": {
+            "value": "[parameters('machineLearningServerEndpointCertificationAuthorityCertificatePath')]"
           }
         }
-      },
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites/extensions', variables('xcCollectWebAppNameTidy'),'MSDeploy')]"
-      ]
+      }
     },
     {
       "apiVersion": "[variables('resourcesApiVersion')]",
-      "name": "[concat(parameters('deploymentId'), '-application-xc-search-solr')]",
+      "name": "[concat(parameters('deploymentId'), '-application-xc-solr')]",
       "condition": "[not(equals(variables('searchProvider'), 'Azure'))]",
       "type": "Microsoft.Resources/deployments",
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[concat(uri(parameters('templateLinkBase'), 'application-xc-search-solr.json'), parameters('templateLinkAccessToken'))]"
+          "uri": "[concat(uri(parameters('templateLinkBase'), 'application-xc-solr.json'), parameters('templateLinkAccessToken'))]"
         },
         "parameters": {
           "infrastructure": {
@@ -480,11 +462,29 @@
           "shardMapManagerSqlDatabaseName": {
             "value": "[parameters('shardMapManagerSqlDatabaseName')]"
           },
+          "shard0SqlDatabaseName": {
+            "value": "[parameters('shard0SqlDatabaseName')]"
+          },
+          "shard1SqlDatabaseName": {
+            "value": "[parameters('shard1SqlDatabaseName')]"
+          },
+          "refDataSqlDatabaseName": {
+            "value": "[parameters('refDataSqlDatabaseName')]"
+          },
+          "reportingSqlDatabaseName": {
+            "value": "[parameters('reportingSqlDatabaseName')]"
+          },
           "maSqlDatabaseName": {
             "value": "[parameters('maSqlDatabaseName')]"
           },
           "messagingSqlDatabaseName": {
             "value": "[parameters('messagingSqlDatabaseName')]"
+          },
+          "processingEngineTasksSqlDatabaseName": {
+            "value": "[parameters('processingEngineTasksSqlDatabaseName')]"
+          },
+          "processingEngineStorageSqlDatabaseName": {
+            "value": "[parameters('processingEngineStorageSqlDatabaseName')]"
           },
 
           "poolsSqlDatabaseUserName": {
@@ -492,6 +492,18 @@
           },
           "poolsSqlDatabasePassword": {
             "value": "[parameters('poolsSqlDatabasePassword')]"
+          },
+          "xcRefDataSqlDatabaseUserName": {
+            "value": "[parameters('xcRefDataSqlDatabaseUserName')]"
+          },
+          "xcRefDataSqlDatabasePassword": {
+            "value": "[parameters('xcRefDataSqlDatabasePassword')]"
+          },
+          "reportingSqlDatabaseUserName": {
+            "value": "[parameters('reportingSqlDatabaseUserName')]"
+          },
+          "reportingSqlDatabasePassword": {
+            "value": "[parameters('reportingSqlDatabasePassword')]"
           },
           "xcShardMapManagerSqlDatabaseUserName": {
             "value": "[parameters('xcShardMapManagerSqlDatabaseUserName')]"
@@ -510,6 +522,12 @@
           },
           "messagingSqlDatabasePassword": {
             "value": "[parameters('messagingSqlDatabasePassword')]"
+          },
+          "processingEngineSqlDatabaseUserName": {
+            "value": "[parameters('processingEngineSqlDatabaseUserName')]"
+          },
+          "processingEngineSqlDatabasePassword": {
+            "value": "[parameters('processingEngineSqlDatabasePassword')]"
           },
 
           "xcSearchIndexName": {
@@ -520,6 +538,10 @@
             "value": "[parameters('xcSolrConnectionString')]"
           },
 
+          "machineLearningServerConnectionString": {
+            "value": "[parameters('machineLearningServerConnectionString')]"
+          },
+
           "useApplicationInsights": {
             "value": "[parameters('useApplicationInsights')]"
           },
@@ -527,8 +549,16 @@
             "value": "[parameters('applicationInsightsName')]"
           },
 
-          "xcSearchMsDeployPackageUrl": {
-            "value": "[parameters('xcSearchMsDeployPackageUrl')]"
+          "xcSingleWebAppName": {
+            "value": "[parameters('xcSingleWebAppName')]"
+          },
+
+          "xcSingleMsDeployPackageUrl": {
+            "value": "[parameters('xcSingleMsDeployPackageUrl')]"
+          },
+
+          "xcServerConfigurationEnvironment": {
+            "value": "[parameters('xcServerConfigurationEnvironment')]"
           },
 
           "allowInvalidClientCertificates": {
@@ -539,15 +569,23 @@
             "value": "[parameters('passwordSalt')]"
           },
 
-          "xcServerConfigurationEnvironment": {
-            "value": "[parameters('xcServerConfigurationEnvironment')]"
+          "machineLearningServerBlobEndpointCertificatePath": {
+            "value": "[parameters('machineLearningServerBlobEndpointCertificatePath')]"
+          },
+          "machineLearningServerBlobEndpointCertificatePassword": {
+            "value": "[parameters('machineLearningServerBlobEndpointCertificatePassword')]"
+          },
+          "machineLearningServerTableEndpointCertificatePath": {
+            "value": "[parameters('machineLearningServerTableEndpointCertificatePath')]"
+          },
+          "machineLearningServerTableEndpointCertificatePassword": {
+            "value": "[parameters('machineLearningServerTableEndpointCertificatePassword')]"
+          },
+          "machineLearningServerEndpointCertificationAuthorityCertificatePath": {
+            "value": "[parameters('machineLearningServerEndpointCertificationAuthorityCertificatePath')]"
           }
         }
-      },
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites/extensions', variables('xcCollectWebAppNameTidy'),'MSDeploy')]"
-      ]
+      }
     }
-    
   ]
 }

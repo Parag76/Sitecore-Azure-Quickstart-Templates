@@ -344,7 +344,7 @@
 
     "solrConnectionString": {
       "type": "securestring",
-      "defaultValue": "https://ss826876-us-east-1-aws.searchstax.com/solr"
+      "defaultValue": ""
     },
     "xcSolrConnectionString": {
       "type": "securestring",
@@ -398,6 +398,11 @@
       "minLength": 1,
       "defaultValue": "[concat(parameters('deploymentId'), '-ai-pp')]"
     },
+    "siHostingPlanName": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "[concat(parameters('deploymentId'), '-si-hp')]"
+    },
     "applicationInsightsCurrentBillingFeatures": {
       "type": "string",
       "defaultValue": "Basic",
@@ -422,11 +427,7 @@
       "defaultValue": 1
     },
 
-    "siHostingPlanName": {
-      "type": "string",
-      "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-si-hp')]"
-    },
+    
     "singleHostingPlanName": {
       "type": "string",
       "minLength": 1,
@@ -926,9 +927,9 @@
           "singleWebAppName": {
             "value": "[parameters('singleWebAppName')]"
           },
-          "xcSingleWebAppName": {
-            "value": "[parameters('xcSingleWebAppName')]"
-          },
+	   "xcSingleWebAppName": {
+	               "value": "[parameters('xcSingleWebAppName')]"
+	   },
 
           "siMsDeployPackageUrl": {
             "value": "[parameters('siMsDeployPackageUrl')]"
