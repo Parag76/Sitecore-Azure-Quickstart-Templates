@@ -1097,12 +1097,12 @@
         }
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Resources/deployments', concat(parameters('deploymentId'), '-application-xc'))]"
+        "[resourceId('Microsoft.Resources/deployments', concat(parameters('deploymentId'), '-infrastructure'))]"
       ]
     },
     {
       "apiVersion": "[variables('resourcesApiVersion')]",
-      "name": "[concat(parameters('deploymentId'), '-infrastructure')]",
+      "name": "[concat(parameters('deploymentId'), '-application-xc')]",
       "condition": "[parameters('deployXConnect')]",
       "type": "Microsoft.Resources/deployments",
       "properties": {
