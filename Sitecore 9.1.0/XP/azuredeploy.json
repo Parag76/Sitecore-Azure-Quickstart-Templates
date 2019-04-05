@@ -95,6 +95,21 @@
       "minLength": 1,
       "defaultValue": "Standard"
     },
+    "sqlDatabaseMaxSize": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "268435456000"
+    },
+    "sqlBasicDatabaseServiceObjectiveLevel": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "S0"
+    },
+    "sqlDatabaseServiceObjectiveLevel": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "S1"
+    },
     "coreSqlDatabaseName": {
       "type": "string",
       "minLength": 1,
@@ -336,11 +351,18 @@
       "type": "string",
       "defaultValue": "[parameters('location')]"
     },
+    "searchServiceSkuName": {
+      "type": "string",
+      "defaultValue": "Standard"
+    },
     "searchServiceReplicaCount": {
       "type": "int",
       "defaultValue": 1
     },
-
+    "searchServicePartitionCount": {
+      "type": "int",
+      "defaultValue": 1
+    },
     "xcSearchIndexName": {
       "type": "string",
       "minLength": 1,
@@ -413,6 +435,15 @@
       "type": "string",
       "minLength": 1,
       "defaultValue": "[concat(parameters('deploymentId'), '-cm-hp')]"
+    },
+    "applicationInsightsCurrentBillingFeatures": {
+      "type": "string",
+      "defaultValue": "Basic",
+      "allowedValues": [ "Basic", "Application Insights Enterprise" ]
+    },
+    "applicationInsightsDataVolumeCap": {
+      "type": "string",
+      "defaultValue": "0.33"
     },
     "xcSingleHostingPlanName": {
       "type": "string",
