@@ -1102,7 +1102,7 @@
     },
     {
       "apiVersion": "[variables('resourcesApiVersion')]",
-      "name": "[concat(parameters('deploymentId'), '-application-xc')]",
+      "name": "[concat(parameters('deploymentId'), '-infrastructure')]",
       "condition": "[parameters('deployXConnect')]",
       "type": "Microsoft.Resources/deployments",
       "properties": {
