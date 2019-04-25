@@ -312,12 +312,12 @@
     "cmWebAppName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-cm')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-wcm')]"
     },
     "cdWebAppName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-cd')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-wcd')]"
     },
     "prcWebAppName": {
       "type": "string",
@@ -511,7 +511,7 @@
               "SOLR Connection String": "[parameters('solrConnectionString')]",
               "Messaging Connection String": "[concat('Encrypt=True;TrustServerCertificate=False;Data Source=', variables('sqlServerFqdnTidy'), ',1433;Initial Catalog=',variables('messagingSqlDatabaseNameTidy'),';User Id=', parameters('messagingSqlDatabaseUserName'), ';Password=', parameters('messagingSqlDatabasePassword'), ';')]",
               "Application Insights Instrumentation Key": "[if(parameters('useApplicationInsights'), reference(resourceId('Microsoft.Insights/Components', variables('appInsightsNameTidy')), variables('appInsightsApiVersion')).InstrumentationKey, '')]",
-              "Application Insights Role": "[if(parameters('useApplicationInsights'), 'CM', '')]",
+              "Application Insights Role": "[if(parameters('useApplicationInsights'), 'WCM', '')]",
               "Store Sitecore Counters In Application Insights": "[if(parameters('useApplicationInsights'), string(parameters('storeSitecoreCountersInApplicationInsights')), 'false')]",
               "Use Application Insights": "[string(parameters('useApplicationInsights'))]",
               "IP Security Client IP": "[parameters('securityClientIp')]",
@@ -562,7 +562,7 @@
                 "Cloud Search Connection String": "[if(equals(variables('searchProvider'), 'Azure'), concat('serviceUrl=https://', variables('searchServiceNameTidy'), '.search.windows.net;apiVersion=', variables('searchRestApiVersion'), ';apiKey=', listAdminKeys(resourceId('Microsoft.Search/searchServices', variables('searchServiceNameTidy')), variables('searchApiVersion')).primaryKey), '')]",
                 "SOLR Connection String": "[parameters('solrConnectionString')]",
                 "Application Insights Instrumentation Key": "[if(parameters('useApplicationInsights'), reference(resourceId('Microsoft.Insights/Components', variables('appInsightsNameTidy')), variables('appInsightsApiVersion')).InstrumentationKey, '')]",
-                "Application Insights Role": "[if(parameters('useApplicationInsights'), 'CD', '')]",
+                "Application Insights Role": "[if(parameters('useApplicationInsights'), 'WCD', '')]",
                 "Store Sitecore Counters In Application Insights": "[if(parameters('useApplicationInsights'), string(parameters('storeSitecoreCountersInApplicationInsights')), 'false')]",
                 "Use Application Insights": "[string(parameters('useApplicationInsights'))]",
                 "EXM Cryptographic Key": "[parameters('exmCryptographicKey')]",

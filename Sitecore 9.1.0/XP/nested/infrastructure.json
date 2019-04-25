@@ -42,8 +42,8 @@
     "sitecoreTags": {
       "provider": "b51535c2-ab3e-4a68-95f8-e2e3c9a19299",
       "si": "si",
-      "cm": "cm",
-      "cd": "cd",
+      "cm": "wcm",
+      "cd": "wcd",
       "rep": "rep",
       "prc": "prc",
       "core": "core",
@@ -73,7 +73,10 @@
         "description": "Sitecore SKU controls the sizes and service levels of the provisioned resources"
       }
     },
-
+	"servers_sitecore91_sql_name": {
+            "defaultValue": "sitecore91-sql",
+            "type": "String"
+        },
     "sqlServerName": {
       "type": "string",
       "minLength": 1,
@@ -186,12 +189,12 @@
     "cmHostingPlanName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-cm-hp')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-wcm-hp')]"
     },
     "cdHostingPlanName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-cd-hp')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-wcd-hp')]"
     },
     "prcHostingPlanName": {
       "type": "string",
@@ -212,12 +215,12 @@
     "cmWebAppName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-cm')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-wcm')]"
     },
     "cdWebAppName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-cd')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-wcd')]"
     },
     "prcWebAppName": {
       "type": "string",
@@ -890,6 +893,24 @@
             "provider": "[variables('sitecoreTags').provider]",
             "logicalName": "[variables('sitecoreTags').core]"
           }
+        },
+		{
+            "type": "Microsoft.Sql/servers/elasticPools",
+            "apiVersion": "2014-04-01",
+            "name": "[concat(parameters('servers_sitecore91_sql_name'), '/Sitecore91ElasticPool')]",
+            "location": "East US",
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_sitecore91_sql_name'))]"
+            ],
+            "kind": "pool",
+            "properties": {
+                "edition": "Standard",
+                "dtu": 200,
+                "databaseDtuMin": 0,
+                "databaseDtuMax": 200,
+                "storageMB": 102400,
+                "zoneRedundant": false
+            }
         },
         {
           "type": "databases",
