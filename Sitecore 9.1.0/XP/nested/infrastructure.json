@@ -159,7 +159,7 @@
     "redisCacheName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-redis')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-rediscache')]"
     },
 
     "useApplicationInsights": {
