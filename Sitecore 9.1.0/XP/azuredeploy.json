@@ -340,7 +340,7 @@
     "redisCacheName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-redis')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-rediscache')]"
     },
 
     "searchServiceName": {
@@ -434,7 +434,7 @@
     "cmHostingPlanName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-cm-hp')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-wcm-hp')]"
     },
     "applicationInsightsCurrentBillingFeatures": {
       "type": "string",
@@ -461,7 +461,7 @@
     "cdHostingPlanName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-cd-hp')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-wcd-hp')]"
     },
     "prcHostingPlanName": {
       "type": "string",
@@ -486,12 +486,12 @@
     "cmWebAppName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-cm')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-wcm')]"
     },
     "cdWebAppName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-cd')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-wcd')]"
     },
     "prcWebAppName": {
       "type": "string",
