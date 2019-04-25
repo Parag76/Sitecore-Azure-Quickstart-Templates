@@ -262,7 +262,7 @@
     "redisCacheName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-rediscache')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-redis')]"
     },
 
     "searchServiceName": {
