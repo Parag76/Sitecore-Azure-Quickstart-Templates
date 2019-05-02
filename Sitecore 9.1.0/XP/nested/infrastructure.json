@@ -893,7 +893,25 @@
             "provider": "[variables('sitecoreTags').provider]",
             "logicalName": "[variables('sitecoreTags').core]"
           }
-        },		
+        },
+		{
+            "type": "Microsoft.Sql/servers/elasticPools",
+            "apiVersion": "2014-04-01",
+            "name": "[concat(parameters('servers_sitecore91_sql_name'), '/Sitecore91ElasticPool')]",
+            "location": "East US",
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_sitecore91_sql_name'))]"
+            ],
+            "kind": "pool",
+            "properties": {
+                "edition": "Standard",
+                "dtu": 200,
+                "databaseDtuMin": 0,
+                "databaseDtuMax": 200,
+                "storageMB": 102400,
+                "zoneRedundant": false
+            }
+        },
         {
           "type": "databases",
           "apiVersion": "[variables('dbApiVersion')]",
