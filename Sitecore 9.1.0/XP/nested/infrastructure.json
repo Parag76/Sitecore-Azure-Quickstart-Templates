@@ -12,7 +12,7 @@
     "siteExtensionsVersion": "2015-04-01",
 
     "sqlServerNameTidy": "[toLower(trim(parameters('sqlServerName')))]",
-
+    "sqlElasticPool": "[toLower(trim(parameters('sqlEPool')))]",
     "coreSqlDatabaseNameTidy": "[toLower(trim(parameters('coreSqlDatabaseName')))]",
     "webSqlDatabaseNameTidy": "[toLower(trim(parameters('webSqlDatabaseName')))]",
     "masterSqlDatabaseNameTidy": "[toLower(trim(parameters('masterSqlDatabaseName')))]",
@@ -1096,7 +1096,7 @@
 	{
             "type": "Microsoft.Sql/servers/elasticPools",
             "apiVersion": "2014-04-01",
-            "name": "Sitecore91ElasticPool",
+            "name": "[variables('sqlElasticPool')]",
             "location": "East US",
             "dependsOn": [
                 "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ]
