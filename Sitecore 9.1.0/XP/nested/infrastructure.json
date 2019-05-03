@@ -904,7 +904,8 @@
           "name": "[variables('coreSqlDatabaseNameTidy')]",
           "location": "[parameters('location')]",
           "dependsOn": ["[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]",
-						"[resourceId('Microsoft.Sql/servers/elasticPools', variables('sqlServerNameTidy'), , variables('elasticPoolName'))]"],		  
+						"[concat('Microsoft.Sql/servers/', variables('sqlServerNameTidy') ,'/elasticpools/', variables('elasticPoolName'))]"],
+												
 		  
           "tags": {
             "provider": "[variables('sitecoreTags').provider]",
