@@ -10,7 +10,7 @@
     "appInsightsApiVersion": "2015-05-01",
     "certificateApiVersion": "2014-11-01",
     "siteExtensionsVersion": "2015-04-01",
-
+	"elasticPoolName": "SQLElasticPool91",
     "sqlServerNameTidy": "[toLower(trim(parameters('sqlServerName')))]",
     "coreSqlDatabaseNameTidy": "[toLower(trim(parameters('coreSqlDatabaseName')))]",
     "webSqlDatabaseNameTidy": "[toLower(trim(parameters('webSqlDatabaseName')))]",
