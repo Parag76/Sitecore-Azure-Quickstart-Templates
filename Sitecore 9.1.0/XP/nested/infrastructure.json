@@ -856,7 +856,7 @@
       "tags": {
         "provider": "[variables('sitecoreTags').provider]"
       }
-	  },
+	  "resources": [
       
         {
           "type": "firewallrules",
@@ -867,7 +867,9 @@
           },
           "name": "AllowAllAzureIps",
           "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ]
-        },
+		  
+        }]
+		},
 		{
             "type": "Microsoft.Sql/servers/elasticPools",
             "apiVersion": "[variables('dbApiVersion')]",
