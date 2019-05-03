@@ -855,7 +855,7 @@
       "location": "[parameters('location')]",
       "tags": {
         "provider": "[variables('sitecoreTags').provider]"
-      }
+      },
 	  "resources": [
       
         {
