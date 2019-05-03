@@ -137,7 +137,7 @@
     "xcSingleWebAppName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-xc-single')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-xc-single-Web')]"
     }
   },
   "resources": [

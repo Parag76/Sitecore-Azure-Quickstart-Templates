@@ -213,27 +213,27 @@
     "siWebAppName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-si')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-si-Web')]"
     },
     "cmWebAppName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-wcm')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-wcm-Web')]"
     },
     "cdWebAppName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-wcd')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-wcd-Web')]"
     },
     "prcWebAppName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-prc')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-prc-Web')]"
     },
     "repWebAppName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-rep')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-rep-Web')]"
     },
     "authCertificateName": {
       "type": "string",
