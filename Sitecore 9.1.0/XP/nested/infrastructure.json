@@ -883,11 +883,10 @@
         {
           "type": "databases",
           "apiVersion": "[variables('dbApiVersion')]",
-          "properties": {
-            "edition": "[parameters('resourceSizes').coreSqlDatabase.Edition]",
-            "collation": "[parameters('sqlDatabaseCollation')]",
-            "maxSizeBytes": "[parameters('resourceSizes').coreSqlDatabase.MaxSize]",
-            "requestedServiceObjectiveName": "[parameters('resourceSizes').coreSqlDatabase.ServiceObjectiveLevel]"
+          "properties": {            
+            "collation": "[parameters('sqlDatabaseCollation')]",            
+            "requestedServiceObjectiveName": "ElasticPool",
+			"elasticPoolName": "[parameters('elasticPoolName')]"
           },
           "resources": [
             {
@@ -904,7 +903,9 @@
           ],
           "name": "[variables('coreSqlDatabaseNameTidy')]",
           "location": "[parameters('location')]",
-          "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ],
+          "dependsOn": ["[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]",
+						"[resourceId('Microsoft.Sql/servers/elasticpools', variables('elasticPoolName'))]"],		  
+		  
           "tags": {
             "provider": "[variables('sitecoreTags').provider]",
             "logicalName": "[variables('sitecoreTags').core]"
