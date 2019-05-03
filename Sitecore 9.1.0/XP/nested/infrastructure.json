@@ -855,24 +855,20 @@
       "location": "[parameters('location')]",
       "tags": {
         "provider": "[variables('sitecoreTags').provider]"
-      }
-	  },
-	  
-      
+      },
+      "resources": [
         {
-          "type": "Microsoft.Sql/servers/firewallrules",
+          "type": "firewallrules",
           "apiVersion": "[variables('dbApiVersion')]",
-		  "location": "[parameters('location')]",
           "properties": {
             "endIpAddress": "0.0.0.0",
             "startIpAddress": "0.0.0.0"
           },
           "name": "AllowAllAzureIps",
           "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ]
-		},
-
+        },
 		{
-            "type": "Microsoft.Sql/servers/elasticPools",
+            "type": "elasticPools",
             "apiVersion": "[variables('dbApiVersion')]",
             "name": "[variables('elasticPoolName')]",
             "location": "[parameters('location')]",
@@ -885,7 +881,7 @@
             }
         },
         {
-          "type": "Microsoft.Sql/servers/databases",
+          "type": "databases",
           "apiVersion": "[variables('dbApiVersion')]",
           "properties": {
             "edition": "[parameters('resourceSizes').coreSqlDatabase.Edition]",
@@ -915,7 +911,7 @@
           }
         },		
         {
-          "type": "Microsoft.Sql/servers/databases",
+          "type": "databases",
           "apiVersion": "[variables('dbApiVersion')]",
           "properties": {
             "edition": "[parameters('resourceSizes').masterSqlDatabase.Edition]",
@@ -945,7 +941,7 @@
           }
         },
 		    {
-          "type": "Microsoft.Sql/servers/databases",
+          "type": "databases",
           "apiVersion": "[variables('dbApiVersion')]",
           "properties": {
             "edition": "[parameters('resourceSizes').webSqlDatabase.Edition]",
@@ -975,7 +971,7 @@
           }
         },
         {
-          "type": "Microsoft.Sql/servers/databases",
+          "type": "databases",
           "apiVersion": "[variables('dbApiVersion')]",
           "properties": {
             "edition": "[parameters('resourceSizes').poolsSqlDatabase.Edition]",
@@ -1005,7 +1001,7 @@
           }
         },
         {
-          "type": "Microsoft.Sql/servers/databases",
+          "type": "databases",
           "apiVersion": "[variables('dbApiVersion')]",
           "properties": {
             "edition": "[parameters('resourceSizes').tasksSqlDatabase.Edition]",
@@ -1035,7 +1031,7 @@
           }
         },
         {
-          "type": "Microsoft.Sql/servers/databases",
+          "type": "databases",
           "apiVersion": "[variables('dbApiVersion')]",
           "properties": {
             "edition": "[parameters('resourceSizes').formsSqlDatabase.Edition]",
@@ -1065,7 +1061,7 @@
           }
         },
         {
-          "type": "Microsoft.Sql/servers/databases",
+          "type": "databases",
           "apiVersion": "[variables('dbApiVersion')]",
           "properties": {
             "edition": "[parameters('resourceSizes').exmMasterSqlDatabase.Edition]",
@@ -1093,9 +1089,9 @@
             "provider": "[variables('sitecoreTags').provider]",
             "logicalName": "[variables('sitecoreTags').exmmaster]"
           }
-        },
-      
-    	
+        }
+      ]
+    },	
     {
       "type": "Microsoft.Search/searchServices",
       "condition": "[parameters('deployAzureSearch')]",
