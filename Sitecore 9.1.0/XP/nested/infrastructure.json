@@ -1090,7 +1090,7 @@
             "provider": "[variables('sitecoreTags').provider]",
             "logicalName": "[variables('sitecoreTags').exmmaster]"
           }
-        }
+        },
       
     	
     {
