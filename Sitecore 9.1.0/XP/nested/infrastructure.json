@@ -72,7 +72,7 @@
         "description": "Sitecore SKU controls the sizes and service levels of the provisioned resources"
       }
     },
-	"elasticPoolName": {
+	"sqlEPool": {
       "type": "string",
       "defaultValue": "[concat(parameters('deploymentId'), '-Elasticpool')]"
     },
