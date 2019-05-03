@@ -904,7 +904,7 @@
           "name": "[variables('coreSqlDatabaseNameTidy')]",
           "location": "[parameters('location')]",
           "dependsOn": ["[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]",
-						"[concat('Microsoft.Sql/servers/', variables('sqlServerNameTidy') ,'/elasticpools/', variables('elasticPoolName'))]"],
+						"[concat('Microsoft.Sql/servers/', variables('sqlServerNameTidy') ,'/elasticpools/', parameters('elasticPoolName'))]"],
 												
 		  
           "tags": {
