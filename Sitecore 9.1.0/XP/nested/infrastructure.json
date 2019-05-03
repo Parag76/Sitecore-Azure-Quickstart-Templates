@@ -860,17 +860,16 @@
 	  
       
         {
-          "type": "firewallrules",
+          "type": "Microsoft.Sql/servers/firewallrules",
           "apiVersion": "[variables('dbApiVersion')]",
           "properties": {
             "endIpAddress": "0.0.0.0",
             "startIpAddress": "0.0.0.0"
           },
           "name": "AllowAllAzureIps",
-          "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ]
-		  
-        
+          "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ]        
 		},
+
 		{
             "type": "Microsoft.Sql/servers/elasticPools",
             "apiVersion": "[variables('dbApiVersion')]",
@@ -885,7 +884,7 @@
             }
         },
         {
-          "type": "databases",
+          "type": "Microsoft.Sql/servers/databases",
           "apiVersion": "[variables('dbApiVersion')]",
           "properties": {
             "edition": "[parameters('resourceSizes').coreSqlDatabase.Edition]",
@@ -915,7 +914,7 @@
           }
         },		
         {
-          "type": "databases",
+          "type": "Microsoft.Sql/servers/databases",
           "apiVersion": "[variables('dbApiVersion')]",
           "properties": {
             "edition": "[parameters('resourceSizes').masterSqlDatabase.Edition]",
@@ -945,7 +944,7 @@
           }
         },
 		    {
-          "type": "databases",
+          "type": "Microsoft.Sql/servers/databases",
           "apiVersion": "[variables('dbApiVersion')]",
           "properties": {
             "edition": "[parameters('resourceSizes').webSqlDatabase.Edition]",
@@ -975,7 +974,7 @@
           }
         },
         {
-          "type": "databases",
+          "type": "Microsoft.Sql/servers/databases",
           "apiVersion": "[variables('dbApiVersion')]",
           "properties": {
             "edition": "[parameters('resourceSizes').poolsSqlDatabase.Edition]",
@@ -1005,7 +1004,7 @@
           }
         },
         {
-          "type": "databases",
+          "type": "Microsoft.Sql/servers/databases",
           "apiVersion": "[variables('dbApiVersion')]",
           "properties": {
             "edition": "[parameters('resourceSizes').tasksSqlDatabase.Edition]",
@@ -1035,7 +1034,7 @@
           }
         },
         {
-          "type": "databases",
+          "type": "Microsoft.Sql/servers/databases",
           "apiVersion": "[variables('dbApiVersion')]",
           "properties": {
             "edition": "[parameters('resourceSizes').formsSqlDatabase.Edition]",
@@ -1065,7 +1064,7 @@
           }
         },
         {
-          "type": "databases",
+          "type": "Microsoft.Sql/servers/databases",
           "apiVersion": "[variables('dbApiVersion')]",
           "properties": {
             "edition": "[parameters('resourceSizes').exmMasterSqlDatabase.Edition]",
