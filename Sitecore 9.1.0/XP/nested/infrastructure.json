@@ -10,7 +10,7 @@
     "appInsightsApiVersion": "2015-05-01",
     "certificateApiVersion": "2014-11-01",
     "siteExtensionsVersion": "2015-04-01",
-	"elasticPoolName": "[toLower(trim(parameters('sqlEPool')))]",
+	"sqlElasticPool": "[toLower(trim(parameters('elasticPoolName')))]",
     "sqlServerNameTidy": "[toLower(trim(parameters('sqlServerName')))]",
     "coreSqlDatabaseNameTidy": "[toLower(trim(parameters('coreSqlDatabaseName')))]",
     "webSqlDatabaseNameTidy": "[toLower(trim(parameters('webSqlDatabaseName')))]",
@@ -72,7 +72,7 @@
         "description": "Sitecore SKU controls the sizes and service levels of the provisioned resources"
       }
     },
-	"sqlEPool": {
+	"elasticPoolName": {
       "type": "string",
       "defaultValue": "[concat(parameters('deploymentId'), '-Elasticpool')]"
     },
@@ -870,7 +870,7 @@
 		{
             "type": "elasticPools",
             "apiVersion": "[variables('dbApiVersion')]",
-            "name": "[variables('elasticPoolName')]",
+            "name": "[variables('sqlElasticPool')]",
             "location": "[parameters('location')]",
             "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ],            
             "properties": {
@@ -904,7 +904,7 @@
           "name": "[variables('coreSqlDatabaseNameTidy')]",
           "location": "[parameters('location')]",
           "dependsOn": ["[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]",
-						"[concat('Microsoft.Sql/servers/', variables('sqlServerNameTidy') ,'/elasticpools/', parameters('elasticPoolName'))]"],
+						"[concat('Microsoft.Sql/servers/', variables('sqlServerNameTidy') ,'/elasticpools/', variables('sqlElasticPool'))]"],
 												
 		  
           "tags": {
