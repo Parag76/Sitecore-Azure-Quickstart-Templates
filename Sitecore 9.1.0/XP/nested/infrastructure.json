@@ -855,8 +855,9 @@
       "location": "[parameters('location')]",
       "tags": {
         "provider": "[variables('sitecoreTags').provider]"
-      },
-      "resources": [
+      }
+	  },
+      
         {
           "type": "firewallrules",
           "apiVersion": "[variables('dbApiVersion')]",
@@ -869,7 +870,7 @@
         },
 		{
             "type": "Microsoft.Sql/servers/elasticPools",
-            "apiVersion": "2014-04-01",
+            "apiVersion": "[variables('dbApiVersion')]",
             "name": "[variables('elasticPoolName')]",
             "location": "[parameters('location')]",
             "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ],            
@@ -1090,8 +1091,8 @@
             "logicalName": "[variables('sitecoreTags').exmmaster]"
           }
         }
-      ]
-    },	
+      
+    	
     {
       "type": "Microsoft.Search/searchServices",
       "condition": "[parameters('deployAzureSearch')]",
