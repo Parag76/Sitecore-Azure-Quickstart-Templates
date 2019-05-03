@@ -12,7 +12,6 @@
     "siteExtensionsVersion": "2015-04-01",
 
     "sqlServerNameTidy": "[toLower(trim(parameters('sqlServerName')))]",
-    "sqlElasticPool": "[toLower(trim(parameters('sqlEPool')))]",
     "coreSqlDatabaseNameTidy": "[toLower(trim(parameters('coreSqlDatabaseName')))]",
     "webSqlDatabaseNameTidy": "[toLower(trim(parameters('webSqlDatabaseName')))]",
     "masterSqlDatabaseNameTidy": "[toLower(trim(parameters('masterSqlDatabaseName')))]",
