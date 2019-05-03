@@ -862,12 +862,13 @@
         {
           "type": "Microsoft.Sql/servers/firewallrules",
           "apiVersion": "[variables('dbApiVersion')]",
+		  "location": "[parameters('location')]",
           "properties": {
             "endIpAddress": "0.0.0.0",
             "startIpAddress": "0.0.0.0"
           },
           "name": "AllowAllAzureIps",
-          "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ]        
+          "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ]
 		},
 
 		{
