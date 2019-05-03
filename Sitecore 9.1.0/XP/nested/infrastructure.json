@@ -1076,6 +1076,19 @@
         }
       ]
     },
+	{
+            "type": "Microsoft.Sql/servers/elasticPools",
+            "apiVersion": "2014-04-01",
+            "name": "[variables('sqlElasticPool')]",
+            "location": "[parameters('location')]",
+            "dependsOn": ["dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ]],            
+            "properties": {
+				"edition": "Standard",
+                "dtu": 200,
+                "databaseDtuMin": 0,
+                "databaseDtuMax": 200                
+            }
+        },
     {
       "type": "Microsoft.Search/searchServices",
       "condition": "[parameters('deployAzureSearch')]",
@@ -1093,19 +1106,7 @@
         "provider": "[variables('sitecoreTags').provider]"
       }
     },	
-	{
-            "type": "Microsoft.Sql/servers/elasticPools",
-            "apiVersion": "2014-04-01",
-            "name": "[variables('sqlElasticPool')]",
-            "location": "[parameters('location')]",
-            "dependsOn": ["dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ]],            
-            "properties": {
-				"edition": "Standard",
-                "dtu": 200,
-                "databaseDtuMin": 0,
-                "databaseDtuMax": 200                
-            }
-        },
+	
     {
       "type": "Microsoft.Cache/Redis",
       "name": "[variables('redisCacheNameTidy')]",
