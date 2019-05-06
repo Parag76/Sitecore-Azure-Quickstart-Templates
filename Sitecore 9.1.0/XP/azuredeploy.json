@@ -490,27 +490,27 @@
     "cmWebAppName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-wcm')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-wcm-web')]"
     },
     "cdWebAppName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-wcd')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-wcd-web')]"
     },
     "prcWebAppName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-prc')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-prc-web')]"
     },
     "repWebAppName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-rep')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-rep-web')]"
     },
     "xcSingleWebAppName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-xc-single')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-xc-single-web')]"
     },
     
 
