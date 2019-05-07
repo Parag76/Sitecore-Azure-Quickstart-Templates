@@ -485,7 +485,7 @@
     "siWebAppName": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "[concat(parameters('deploymentId'), '-si')]"
+      "defaultValue": "[concat(parameters('deploymentId'), '-si-web')]"
     },
     "cmWebAppName": {
       "type": "string",
