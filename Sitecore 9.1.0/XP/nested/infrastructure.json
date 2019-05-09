@@ -785,18 +785,6 @@
 						{
 						  "name": "security",
 						  "connectionString": "Encrypt=True;TrustServerCertificate=False;Data Source=adi-eus2-analogcom-dev-sql.database.windows.net,1433;Initial Catalog=adi-eus2-analogcom-dev-core-db;User Id=securityuser;Password=LKCK5HWKXTAYKwhkwx6ueoitumWHKWX6UEOITUM4@;"
-						},
-						{
-						  "name": "web",
-						  "connectionString": "Encrypt=True;TrustServerCertificate=False;Data Source=adi-eus2-analogcom-dev-sql.database.windows.net,1433;Initial Catalog=adi-eus2-analogcom-dev-web-db;User Id=webuser;Password=633JF7Y2OBV2Cbzb23disdddeuBZB23DISDDDEU4@;"
-						},
-						{
-						  "name": "messaging",
-						  "connectionString": "Encrypt=True;TrustServerCertificate=False;Data Source=adi-eus2-analogcom-dev-sql.database.windows.net,1433;Initial Catalog=adi-eus2-analogcom-dev-messaging-db;User Id=messaginguser;Password=UQL46YYDZMLHWip473kn4jo7ogIP473KN4JO7OG4@;"
-						},
-						{
-						  "name": "experienceforms",
-						  "connectionString": "Encrypt=True;TrustServerCertificate=False;Data Source=adi-eus2-analogcom-dev-sql.database.windows.net,1433;Initial Catalog=adi-eus2-analogcom-dev-forms-db;User Id=formsuser;Password=YBLFCZ5OJBSQQl5wg5d4p3etngL5WG5D4P3ETNG4@;"
 						}
 			]
           "defaultDocuments": [
