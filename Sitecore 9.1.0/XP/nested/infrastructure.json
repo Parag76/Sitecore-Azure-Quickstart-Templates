@@ -798,6 +798,65 @@
 						  "name": "experienceforms",
 						  "connectionString": "Encrypt=True;TrustServerCertificate=False;Data Source=adi-eus2-analogcom-dev-sql.database.windows.net,1433;Initial Catalog=adi-eus2-analogcom-dev-forms-db;User Id=formsuser;Password=YBLFCZ5OJBSQQl5wg5d4p3etngL5WG5D4P3ETNG4@;"
 						}
+						{
+						  "name": "exm.master",
+						  "connectionString": "Encrypt=True;TrustServerCertificate=False;Data Source=adi-eus2-analogcom-dev-sql.database.windows.net,1433;Initial Catalog=adi-eus2-analogcom-dev-exmmaster-db;User Id=exmmasteruser;Password=3W2G5PH64KY5Q3xulpzfercuyo3XULPZFERCUYO4@;"
+						},
+						{
+						  "name": "solr.search",
+						  "connectionString": "https://ss826876-us-east-1-aws.searchstax.com/solr;solrCloud=true"
+						},
+						{
+						  "name": "xconnect.collection",
+						  "connectionString": "https://adi-eus2-analogcom-dev-xc-single-web.azurewebsites.net"
+						},
+						{
+						  "name": "xconnect.collection.certificate",
+						  "connectionString": "StoreName=My;StoreLocation=CurrentUser;FindType=FindByThumbprint;FindValue=FDC576AACC550F84E2BC4C9223672F9DF283D5C3"
+						}
+						{
+						  "name": "xdb.marketingautomation.operations.client",
+						  "connectionString": "https://adi-eus2-analogcom-dev-xc-single-web.azurewebsites.net"
+						},
+						{
+						  "name": "xdb.marketingautomation.operations.client.certificate",
+						  "connectionString": "StoreName=My;StoreLocation=CurrentUser;FindType=FindByThumbprint;FindValue=FDC576AACC550F84E2BC4C9223672F9DF283D5C3"
+						},
+						{
+						  "name": "xdb.referencedata.client",
+						  "connectionString": "https://adi-eus2-analogcom-dev-xc-single-web.azurewebsites.net"
+						},
+						{
+						  "name": "xdb.referencedata.client.certificate",
+						  "connectionString": "StoreName=My;StoreLocation=CurrentUser;FindType=FindByThumbprint;FindValue=FDC576AACC550F84E2BC4C9223672F9DF283D5C3"
+						},
+						
+						
+						{
+						  "name": "PackageManagementServiceUrl",
+						  "connectionString": "https://updatecenter.cloud.sitecore.net/"
+						},
+						{
+						  "name": "EXM.CryptographicKey",
+						  "connectionString": "2B4033C0BCEA572CA2F038F4470A87B52B4033C0BCEA572CA2F038F4470A87B5"
+						}
+						{
+						  "name": "EXM.AuthenticationKey",
+						  "connectionString": "A7BCED1F489D5CA1BCD6E661E72F1001A7BCED1F489D5CA1BCD6E661E72F1001"
+						},
+						{
+						  "name": "appinsights.instrumentationkey",
+						  "connectionString": "1bb6a9f1-6682-4cca-b62b-bc6ba6cdb30a"
+						},
+						{
+						  "name": "redis.sessions",
+						  "connectionString": "adi-eus2-analogcom-dev-redis.redis.cache.windows.net:6380,password=vqNQX4PY1M4l627S1uHSWf+3VLTNkCG5j9KdDhLVbCM=,ssl=True,abortConnect=False"
+						},
+						{
+						  "name": "cloud.search",
+						  "connectionString": ""
+						}
+						
 			],
           "defaultDocuments": [
             "index.html"
