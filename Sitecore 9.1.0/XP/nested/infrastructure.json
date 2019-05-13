@@ -757,6 +757,119 @@
           "use32BitWorkerProcess": false,
           "alwaysOn": true,
           "phpVersion": "",
+		  "connectionStrings": [
+						{
+						  "name": "core",
+						  "connectionString": "Encrypt=True;TrustServerCertificate=False;Data Source=adi-eus2-analogcom-dev-sql.database.windows.net,1433;Initial Catalog=adi-eus2-analogcom-dev-core-db;User Id=coreuser;Password=4SHTXKMZXKGFUzcbi64wgnjlvwZCBI64WGNJLVW4@;"
+						},
+						{
+						  "name": "security",
+						  "connectionString": "Encrypt=True;TrustServerCertificate=False;Data Source=adi-eus2-analogcom-dev-sql.database.windows.net,1433;Initial Catalog=adi-eus2-analogcom-dev-core-db;User Id=securityuser;Password=LKCK5HWKXTAYKwhkwx6ueoitumWHKWX6UEOITUM4@;"
+						},
+						{
+						  "name": "master",
+						  "connectionString": "Encrypt=True;TrustServerCertificate=False;Data Source=adi-eus2-analogcom-dev-sql.database.windows.net,1433;Initial Catalog=adi-eus2-analogcom-dev-master-db;User Id=masteruser;Password=N57PT5CAZGS5Sogt6cdbmvk7uqOGT6CDBMVK7UQ4@;"
+						},
+						{
+						  "name": "web",
+						  "connectionString": "Encrypt=True;TrustServerCertificate=False;Data Source=adi-eus2-analogcom-dev-sql.database.windows.net,1433;Initial Catalog=adi-eus2-analogcom-dev-web-db;User Id=webuser;Password=633JF7Y2OBV2Cbzb23disdddeuBZB23DISDDDEU4@;"
+						},
+						{
+						  "name": "reporting.apikey",
+						  "connectionString": "06e90522-b1ed-4e35-b1f4-84534b9ae9fc"
+						},
+						{
+						  "name": "messaging",
+						  "connectionString": "Encrypt=True;TrustServerCertificate=False;Data Source=adi-eus2-analogcom-dev-sql.database.windows.net,1433;Initial Catalog=adi-eus2-analogcom-dev-messaging-db;User Id=messaginguser;Password=UQL46YYDZMLHWip473kn4jo7ogIP473KN4JO7OG4@;"
+						},
+						{
+						  "name": "xdb.referencedata",
+						  "connectionString": "Encrypt=True;TrustServerCertificate=False;Data Source=adi-eus2-analogcom-dev-sql.database.windows.net,1433;Initial Catalog=adi-eus2-analogcom-dev-refdata-db;User Id=xcrefdatauser;Password=OMX7LELADMS3S7pqarguopp6na7PQARGUOPP6NA4@;"
+						},
+						{
+						  "name": "experienceforms",
+						  "connectionString": "Encrypt=True;TrustServerCertificate=False;Data Source=adi-eus2-analogcom-dev-sql.database.windows.net,1433;Initial Catalog=adi-eus2-analogcom-dev-forms-db;User Id=formsuser;Password=YBLFCZ5OJBSQQl5wg5d4p3etngL5WG5D4P3ETNG4@;"
+						},
+						{
+						  "name": "exm.master",
+						  "connectionString": "Encrypt=True;TrustServerCertificate=False;Data Source=adi-eus2-analogcom-dev-sql.database.windows.net,1433;Initial Catalog=adi-eus2-analogcom-dev-exmmaster-db;User Id=exmmasteruser;Password=3W2G5PH64KY5Q3xulpzfercuyo3XULPZFERCUYO4@;"
+						},
+						{
+						  "name": "sitecore.reporting.client",
+						  "connectionString": "https://adi-eus2-analogcom-dev-xc-single-web.azurewebsites.net"
+						},
+						{
+						  "name": "sitecore.reporting.client.certificate",
+						  "connectionString": "StoreName=My;StoreLocation=CurrentUser;FindType=FindByThumbprint;FindValue=FDC576AACC550F84E2BC4C9223672F9DF283D5C3"
+						},
+						{
+						  "name": "solr.search",
+						  "connectionString": "https://ss826876-us-east-1-aws.searchstax.com/solr;solrCloud=true"
+						},
+						{
+						  "name": "sitecoreidentity.secret",
+						  "connectionString": "50BC62A19A9C573CB1CE970B802C1A12"
+						},
+						{
+						  "name": "xconnect.collection",
+						  "connectionString": "https://adi-eus2-analogcom-dev-xc-single-web.azurewebsites.net"
+						},
+						{
+						  "name": "xconnect.collection.certificate",
+						  "connectionString": "StoreName=My;StoreLocation=CurrentUser;FindType=FindByThumbprint;FindValue=FDC576AACC550F84E2BC4C9223672F9DF283D5C3"
+						},
+						{
+						  "name": "xdb.marketingautomation.operations.client",
+						  "connectionString": "https://adi-eus2-analogcom-dev-xc-single-web.azurewebsites.net"
+						},
+						{
+						  "name": "xdb.marketingautomation.operations.client.certificate",
+						  "connectionString": "StoreName=My;StoreLocation=CurrentUser;FindType=FindByThumbprint;FindValue=FDC576AACC550F84E2BC4C9223672F9DF283D5C3"
+						},
+						{
+						  "name": "xdb.marketingautomation.reporting.client",
+						  "connectionString": "https://adi-eus2-analogcom-dev-xc-single-web.azurewebsites.net"
+						},
+						{
+						  "name": "xdb.marketingautomation.reporting.client.certificate",
+						  "connectionString": "StoreName=My;StoreLocation=CurrentUser;FindType=FindByThumbprint;FindValue=FDC576AACC550F84E2BC4C9223672F9DF283D5C3"
+						},
+						{
+						  "name": "xdb.referencedata.client",
+						  "connectionString": "https://adi-eus2-analogcom-dev-xc-single-web.azurewebsites.net"
+						},
+						{
+						  "name": "xdb.referencedata.client.certificate",
+						  "connectionString": "StoreName=My;StoreLocation=CurrentUser;FindType=FindByThumbprint;FindValue=FDC576AACC550F84E2BC4C9223672F9DF283D5C3"
+						},
+						
+						
+						{
+						  "name": "PackageManagementServiceUrl",
+						  "connectionString": "https://updatecenter.cloud.sitecore.net/"
+						},
+						{
+						  "name": "EXM.CryptographicKey",
+						  "connectionString": "2B4033C0BCEA572CA2F038F4470A87B52B4033C0BCEA572CA2F038F4470A87B5"
+						},
+						{
+						  "name": "EXM.AuthenticationKey",
+						  "connectionString": "A7BCED1F489D5CA1BCD6E661E72F1001A7BCED1F489D5CA1BCD6E661E72F1001"
+						},
+						{
+						  "name": "appinsights.instrumentationkey",
+						  "connectionString": "a7df7b29-cdda-4e06-b1ff-b8974c939db6"
+						},
+						{
+						  "name": "redis.sessions",
+						  "connectionString": "adi-eus2-analogcom-dev-redis.redis.cache.windows.net:6380,password=vqNQX4PY1M4l627S1uHSWf+3VLTNkCG5j9KdDhLVbCM=,ssl=True,abortConnect=False"
+						},
+						{
+						  "name": "cloud.search",
+						  "connectionString": ""
+						}
+						
+			],
           "defaultDocuments": [
             "index.html"
           ]
@@ -821,7 +934,7 @@
 						{
 						  "name": "xdb.marketingautomation.operations.client.certificate",
 						  "connectionString": "StoreName=My;StoreLocation=CurrentUser;FindType=FindByThumbprint;FindValue=FDC576AACC550F84E2BC4C9223672F9DF283D5C3"
-						},
+						},						
 						{
 						  "name": "xdb.referencedata.client",
 						  "connectionString": "https://adi-eus2-analogcom-dev-xc-single-web.azurewebsites.net"
@@ -830,8 +943,6 @@
 						  "name": "xdb.referencedata.client.certificate",
 						  "connectionString": "StoreName=My;StoreLocation=CurrentUser;FindType=FindByThumbprint;FindValue=FDC576AACC550F84E2BC4C9223672F9DF283D5C3"
 						},
-						
-						
 						{
 						  "name": "PackageManagementServiceUrl",
 						  "connectionString": "https://updatecenter.cloud.sitecore.net/"
@@ -846,11 +957,11 @@
 						},
 						{
 						  "name": "appinsights.instrumentationkey",
-						  "connectionString": "1bb6a9f1-6682-4cca-b62b-bc6ba6cdb30a"
+						  "connectionString": "a7df7b29-cdda-4e06-b1ff-b8974c939db6"
 						},
 						{
 						  "name": "redis.sessions",
-						  "connectionString": "adi-eus2-analogcom-dev-redis.redis.cache.windows.net:6380,password=vqNQX4PY1M4l627S1uHSWf+3VLTNkCG5j9KdDhLVbCM=,ssl=True,abortConnect=False"
+						  "connectionString": "adi-eus2-analogcom-dev-redis.redis.cache.windows.net:6380,password=G5rmHCGyStRW6cOmF2HTOVKMgD29WUaWg6oNEqf8Qt4=,ssl=True,abortConnect=False"
 						},
 						{
 						  "name": "cloud.search",
